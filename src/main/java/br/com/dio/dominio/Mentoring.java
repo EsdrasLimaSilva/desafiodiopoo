@@ -3,9 +3,7 @@ package br.com.dio.dominio;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Mentoring {
-    private String title;
-    private String description;
+public class Mentoring extends Content {
     private String date;
     private final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -15,40 +13,22 @@ public class Mentoring {
     }
 
     public Mentoring(String title) {
-        this.title = title;
+        setTitle(title);
     }
 
     public Mentoring(String title, String description) {
-        this.title = title;
-        this.description = description;
+        setTitle(title);
+        setDescription(description);
     }
 
     public Mentoring(String title, String description, LocalDate date) {
-        this.title = title;
-        this.description = description;
+        setTitle(title);
+        setDescription(description);
         setFormatedDate(date);
-    }
-
-    // getters
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public String getDate() {
         return date;
-    }
-
-    // setters
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public void setDate(LocalDate date) {
@@ -59,9 +39,15 @@ public class Mentoring {
         this.date = date.format(DATE_FORMATTER);
     }
 
+    // ==
+
+    public double calculateXp() {
+        return (double) STANDART_XP + 40;
+    }
+
     @Override
     public String toString() {
-        return "Mentoring => Title: " + title + " | Description: " + description + " | Date: " + date;
+        return "\nMentoring => Title: " + getTitle() + " | Description: " + getDescription() + " | Date: " + date;
     }
 
 }
